@@ -2,74 +2,83 @@
 include 'partials/header.php';
 
 
-
-$current_user_id = $_SESSION['user-id'];
-$query = "SELECT id, title, category_id FROM posts 
-WHERE author_id=$current_user_id ORDER BY id DESC";
-
-$posts = mysqli_query($connection, $query);
-
+$query = "SELECT * FROM categories ORDER BY  title";  
+$categories = mysqli_query($connection, $query);
 
 ?>
 
-
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-post-success'])) : 
-    ?>
-        <div class="alert_message success container">
-            <p>
-                <?= $_SESSION['add-post-success'];
-                unset($_SESSION['add-post-success']);
-                ?>
-            </p>
-        </div>
-    <?php elseif (isset($_SESSION['edit-post-success'])) : 
-    ?>
-        <div class="alert_message success container">
-            <p>
-                <?= $_SESSION['edit-post-success'];
-                unset($_SESSION['edit-post-success']);
-                ?>
-            </p>
-        </div>
 
-    <?php elseif (isset($_SESSION['edit-post'])) : 
-    ?>
+        <?php if (isset($_SESSION['add-category-success'])) :  ?>
+        <div class="alert_message success container">
+            <p>
+                <?= $_SESSION['add-category-success'];
+                unset($_SESSION['add-category-success']);
+                ?>
+            </p>
+        </div>
+          <?php elseif (isset($_SESSION['add-category'])) :  ?>
         <div class="alert_message error container">
             <p>
-                <?= $_SESSION['edit-post'];
-                unset($_SESSION['edit-post']);
+                <?= $_SESSION['add-category'];
+                unset($_SESSION['add-category']);
                 ?>
             </p>
         </div>
-
-    <?php elseif (isset($_SESSION['delete-post-success'])) : 
-    ?>
+        <?php elseif (isset($_SESSION['edit-category-success'])) :  ?>
         <div class="alert_message success container">
             <p>
-                <?= $_SESSION['delete-post-success'];
-                unset($_SESSION['delete-post-success']);
+                <?= $_SESSION['edit-category-success'];
+                unset($_SESSION['edit-category-success']);
                 ?>
             </p>
         </div>
-    <?php endif ?>
+    <?php elseif (isset($_SESSION['edit-category'])) : ?>
+        <div class="alert_message error container">
+            <p>
+                <?= $_SESSION['edit-category'];
+                unset($_SESSION['edit-category']);
+                ?>
+            </p>
+        </div>
 
+    <?php elseif (isset($_SESSION['delete-category-success'])) :  ?>
+        <div class="alert_message success container">
+            <p>
+                <?= $_SESSION['delete-category-success'];
+                unset($_SESSION['delete-category-success']);
+                ?>
+            </p>
+        </div>
+
+    <?php elseif (isset($_SESSION['delete-category'])) :  ?>
+        <div class="alert_message error container">
+            <p>
+                <?= $_SESSION['delete-category'];
+                unset($_SESSION['delete-category']);
+                ?>
+            </p>
+        </div>
+
+        <?php endif ?>
+
+        
     <div class="container dashboard_container">
         <button id="show_sidebar-btn" class="sidebar_toogle">
             <i class="uil uil-angle-right-b"></i></button>
         <button id="hide_sidebar-btn" class="sidebar_toogle">
             <i class="uil uil-angle-left-b"></i></button>
-        <aside>
+        
+          <aside>
             <ul>
                 <li><a href="add_post.php"><i class="uil uil-pen"></i>
                         <h5>Add Post</h5>
                     </a></li>
 
-                <li><a href="index.php" class="active"><i class="uil uil-create-dashboard"></i>
+                <li><a href="index.php"><i class="uil uil-create-dashboard"></i>
                         <h5>Manage Post</h5>
                     </a></li>
                 <?php if (isset($_SESSION['user_is_admin'])) : ?>
-
 
                     <li><a href="add_user.php"><i class="uil uil-user-plus"></i>
                             <h5>Add User</h5>
@@ -83,7 +92,7 @@ $posts = mysqli_query($connection, $query);
                             <h5>Add Category</h5>
                         </a></li>
 
-                    <li><a href="manage_categories.php"><i class="uil uil-list-ul"></i>
+                    <li><a href="manage_categories.php" class="active"><i class="uil uil-list-ul"></i>
                             <h5>Manage Categories</h5>
                         </a></li>
                 <?php endif ?>
@@ -91,38 +100,29 @@ $posts = mysqli_query($connection, $query);
         </aside>
 
         <main>
-            <h2>Manage Posts</h2>
-            <?php if (mysqli_num_rows($posts) > 0) : ?>
+            <h2>Manage Categories</h2>
+            <?php if (mysqli_num_rows($categories) > 0) : ?>
                 <table>
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Category</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
-                            <?php
-                            $category_id = $post['category_id'];
-                            $category_query = "SELECT title FROM categories WHERE id=$category_id";
-                            $category_result = mysqli_query($connection, $category_query);
-                            $category = mysqli_fetch_assoc($category_result);
-
-                            ?>
-
+                        <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
                             <tr>
-                                <td><?= $post['title'] ?></td>
                                 <td><?= $category['title'] ?></td>
-                                <td><a href="<?= ROOT_URL ?>admin/edit_post.php?id=<?= $post['id'] ?>" class="btn sm">Edit</a></td>
-                                <td><a href="<?= ROOT_URL ?>admin/delete_post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
+                                <td><a href="<?= ROOT_URL ?>admin/edit_category.php?id=<?= $category['id'] ?>" class="btn sm">Edit</a></td>
+                                <td><a href="<?= ROOT_URL ?>admin/delete_category.php?id=<?= $category['id'] ?>" class="btn sm danger">Delete</a></td>
                             </tr>
-                        <?php endwhile ?>
+                        <?php endwhile?>
+
                     </tbody>
                 </table>
             <?php else : ?>
-                <div class="alert_message error"><?= "No posts found" ?></div>
+                <div class="alert_message error"><?= "No categories found" ?></div>
             <?php endif ?>
         </main>
     </div>
