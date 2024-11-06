@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soften</title>
+
+    <link rel="stylesheet" href="style.css" />
+   
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="/images/favicon2.ico">
+
+  </head>
+  <body>
+
+    <nav>
+      <div class="container nav-container">
+        <a href="index.html" class="nav-logo">Soften</a>
+        <ul class="nav-items">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signin.html">Sign In</a></li>
+          <li class="nav-profile">
+            <div class="avatar">
+              <img src="./images/avatar1.jpg" />
+            </div>
+            <ul>
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="logout.html">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        <button id="open-nav-btn"><i class="uil uil-bars"></i></button>
+        <button id="close-nav-btn"><i class="uil uil-times"></i></button>
+      </div>
+    </nav>
+
+    <section class="form-section" enctype="multipart/form-data">
+      <div class="container form-section-container">
+        <h2>Edit Post</h2>
+        <form action="">
+          <input type="text" placeholder="Title" />
+          <select>
+            <option value="1">Wild Life</option>
+            <option value="1">Art</option>
+            <option value="1">Travel</option>
+            <option value="1">Birds</option>
+            <option value="1">Fruits</option>
+            <option value="1">Music</option>
+          </select>
+          <textarea rows="10" placeholder="Body"></textarea>
+          <div class="form-control inline">
+            <input type="checkbox" id="is-featured" checked />
+            <label for="is-featured">Featured</label>
+          </div>
+          <div class="form-control">
+            <label for="thumbnail">Update Thumbnail</label>
+            <input type="file" id="thumbnail" />
+          </div>
+          <button type="submit" class="btn">Update Post</button>
+        </form>
+      </div>
+    </section>
+
+
+    <footer>
+      <div class="footer-socials">
+        <a href="#" target="_blank"><i class="uil uil-youtube"></i></a>
+        <a href="#" target="_blank"><i class="uil uil-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="uil uil-twitter"></i></a>
+      </div>
+      <div class="container footer-container">
+        <article>
+          <h4>Categories</h4>
+          <ul>
+            <li>Wild Life</li>
+            <li>Art</li>
+            <li>Travel</li>
+            <li>Science & Technology</li>
+            <li>Sport</li>
+            <li>Music</li>
+          </ul>
+        </article>
+        <article>
+          <h4>Support</h4>
+          <ul>
+            <li>Online Support</li>
+            <li>Call Us</li>
+            <li>Email Us</li>
+            <li>Visit Us</li>
+            <li>Social Support</li>
+            <li>Faqs Page</li>
+          </ul>
+        </article>
+        <article>
+          <h4>Services</h4>
+          <ul>
+            <li>Social Media Marketing</li>
+            <li>Social Media Management</li>
+            <li>Web Design</li>
+            <li>Content Writing</li>
+            <li>Blog Management</li>
+            <li>Content Platform</li>
+          </ul>
+        </article>
+        <article>
+          <h4>Quick Links</h4>
+          <ul>
+            <li>Home Page</li>
+            <li>About Us</li>
+            <li>News and Articles</li>
+            <li>Our Services</li>
+            <li>Our Sitemap</li>
+            <li>Contact Us</li>
+          </ul>
+        </article>
+      </div>
+      <div class="footer-copyrights">
+        <small>Copyrights &copy; 2024 Soften</small>
+      </div>
+    </footer>
+
+
+    <script src="./main.js"></script>
+  </body>
+</html>
